@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tranformacion rotación</title>
+    <title>Punto de origen</title>
     <style>
-        body{
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -14,13 +15,15 @@
             color: white;
             font-family: sans-serif;
         }
-        .container{
+
+        .container {
             border: 1px solid red;
             background-color: aquamarine;
             display: flex;
             /* perspective: 600px; */
         }
-        .cuadrado{
+
+        .cuadrado {
             width: 200px;
             height: 200px;
             background-color: #7dc900;
@@ -30,28 +33,45 @@
             align-items: center;
             transition: 1s;
         }
-        .container:hover .cuadrado.a{
+
+        .container:hover .cuadrado.a {
+            /* transform: rotateZ(45deg); */
             transform: rotate(45deg);
+            transform-origin: right;
         }
-        .container:hover .cuadrado.b{
-            transform: rotateX(45deg);
+
+        .container:hover .cuadrado.b {
+            transform-origin: top;
+            transform: rotateX(90deg);
         }
-        .container:hover .cuadrado.c{
-            transform: rotateY(45deg);
+
+        .container:hover .cuadrado.c {
+            transform: rotateY(90deg);
+            transform-origin: left;
         }
-        .container:hover .cuadrado.d{
+
+        .container:hover .cuadrado.d {
             transform: rotateZ(45deg);
+
+            /* transform-origin: 50% 50%; <-- Default value */
+
+            /* transform-origin: 0% 0%; */
+            transform-origin: left top;
+
+            /* transform-origin: 0% 100%; */
+            transform-origin: left bottom;
+
+            /* transform-origin: 100% 0%; */
+            transform-origin: right top;
+
+            /* transform-origin: 100% 100%; */
+            transform-origin: right bottom;
+            transform-origin: 75% 75%;
         }
-        .container:hover .cuadrado.e{
-            transform: rotateX(45deg) rotateY(45deg) rotateZ(45deg);
-        }
-        .container:hover .cuadrado.f{
-            transform: rotate3D(0, 1, 0, 45deg);
-        }
-        
 
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="cuadrado a">
@@ -66,12 +86,7 @@
         <div class="cuadrado d">
             Rotate Z
         </div>
-        <div class="cuadrado e">
-            Rotate XYZ
-        </div>
-        <div class="cuadrado f">
-            Rotate 3D
-        </div>
     </div>
 </body>
+
 </html>
