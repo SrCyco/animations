@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reto animaciones</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .figure{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            animation-name: circle, colors;
+            animation-duration: 2s, .5s;
+            animation-fill-mode: forwards;
+            animation-iteration-count: 1, infinite;
+            transition: .2s;
+            animation-delay: .5s, 0;
+            transform: scale(1.5, 2);            
+        }
+        @keyframes circle{
+            from{
+                transform: scale(1.5, 2);  
+            }
+            70%, to{
+                transform: scale(1);
+                border-radius: 50%;
+            }
+        }
+        @keyframes circle_entrace{
+            70%, to{
+                transform: scale(1);
+                border-radius: 50%;
+            }
+        }
+        @keyframes square{
+            from{
+                border-radius: 50%;
+                transform: scale(1);
+            }
+            70%, to{
+                transform: scale(1);
+                border-radius: 0;
+            }
+        }
+        @keyframes triangle{
+            from{
+                transform: scale(1);
+                border-radius: 0;
+            }
+            70%, to{
+                transform: scale(1);
+                border-color: white white transparent white;
+                border-style: solid;
+                width: 0;
+                height: 0;
+                border-width: 0 100px 200px 100px; 
+            }
+        }
+        @keyframes rectangle{
+            from{
+                transform: scale(1);
+                border-color: white white transparent white;
+                border-style: solid;
+                width: 0;
+                height: 0;
+                border-width: 0 100px 200px 100px;
+            }
+            40%, to{
+                border: 0;
+                width: 200px;
+                height: 200px;
+                transform: scale(1.5, 2);
+            }
+        }
+        @keyframes colors{
+            from{background-color: blue;}
+            16.6%{background-color: blueviolet;}
+            33.2%{background-color: red;}
+            49.8%{background-color: orangered;}
+            66.4%{background-color: yellow;}
+            83%{background-color: green;}
+            to{background-color: black;}
+        }
+    </style>
+</head>
+<body>
+    <div class="figure"></div>
+    <script>
+        const $figure = document.querySelector('.figure');
+        $figure.addEventListener('animationend', (event) => {
+            console.log(event);
+            if(event.animationName === "circle"){
+                $figure.style.animationName = "square, colors";
+            } else if(event.animationName === "square"){
+                $figure.style.animationName = "triangle, colors";
+            } else if(event.animationName === "triangle"){
+                $figure.style.animationName = "rectangle, colors";
+            } else if (event.animationName === "rectangle"){
+                $figure.style.animationName = "circle, colors";
+            }
+        });
+    </script>
+</body>
+</html>
