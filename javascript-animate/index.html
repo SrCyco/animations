@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Javascript element.animate</title>
+    <style>
+        body{
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+        .container{
+            border: 1px solid red;
+            width: 600px;
+        }
+        .pelota{
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            /* border-radius: 50%; */
+        }
+        .buttons{
+            display: flex;
+            justify-content: center;
+        }
+        .btn{
+            background-color: #7dc800;
+            text-align: center;
+            padding: .6em .8em .8em;
+            border: 0;
+            color: white;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: inset 0 -.2em rgba(0, 0, 0, .2);
+            outline: 0;
+            transition: .2s;
+            will-change: transition;
+            animation-timing-function: steps();
+
+        }
+        .btn:active{
+            transform: scale(.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pelota"></div>
+        <div class="buttons">
+            <button class="btn" id="play">Play</button>
+            <button class="btn" id="pause">Pause</button>
+            <button class="btn" id="stop">Stop</button>
+            <button class="btn" id="reverse">Reverse</button>
+        </div>
+    </div>
+    <script>
+        const $pelota = document.querySelector('.pelota');
+        const $play = document.getElementById('play');
+        const $pause = document.getElementById('pause');
+        const $stop = document.getElementById('stop');
+        const $reverse = document.getElementById('reverse');
+        // element.animate(kayframes=[], option = {})
+        const animation = $pelota.animate([{
+            transform: 'translateX(0)'
+        },
+        {
+            transform: 'translateX(500px)'
+        }], {
+            duration: 1000,
+            delay: 1000,
+            direcction: 'normal',
+            easing: 'linear',
+            iterations: Infinity,
+            fill: 'forwards',
+            iterationStart: .5 // 50% Valores de 0 - 1
+            // endDelay: 5000
+        })
+
+        $play.addEventListener('click', (event) => {
+            animation.play();
+        });
+        $pause.addEventListener('click', (event) => {
+            animation.pause();
+        });
+        $stop.addEventListener('click', (event) => {
+            animation.cancel();
+        });
+        $reverse.addEventListener('click', (event) => {
+            animation.reverse();
+        });
+    </script>
+</body>
+</html>

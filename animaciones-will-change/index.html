@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Punto de origen</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            color: white;
+            font-family: sans-serif;
+        }
+
+        .container {
+            border: 1px solid red;
+            display: flex;
+            width: 100%;
+            /* overflow: hidden; */
+        }
+
+        .cuadrado {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            margin: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* transition: 2s; */
+            /* Animacion minimo debe tener Nombre y duracion */
+            /* animation-name: cuadrado, rebote; */
+            /* animation-duration: 3s, .3s; */
+            /* animation-delay: 1s; */
+            animation-iteration-count: infinite, 20;
+            /* animation-timing-function: ease | ease-in | ease-out | ease-in-out | linear | cubic-bezier(1, 1, 1, 1); */
+            /* animation-timing-function: ease; <-- default */
+            /* animation-timing-function: steps(5);*/
+            /* http://cubic-bezier.com/#.17,.67,.83,.67 */
+            animation-timing-function: linear, ease-in-out;
+            animation-direction: alternate;
+            /* animation-fill-mode: forwards; */
+            position: relative;
+            transition: .3s;
+            will-change: opacity, transform;
+        }
+
+        .container:hover .cuadrado.a {
+            opacity: 0;
+            transform: scale(1.5);
+        }
+
+        @keyframes cuadrado {
+            0% {
+                left: 0;
+            }
+            100% {
+                left: calc(100% - 240px);
+            }
+        }
+        @keyframes rebote{
+            from{
+                transform: translateY(0);
+            }
+            to{
+                transform: translateY(100px) scaleY(.8);
+            }
+        }
+        @keyframes escalera{
+            from{
+                transform: translateY(0)
+            }
+            to{
+                transform: translateY(500px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="cuadrado a">
+            Hola Mundo
+        </div>
+    </div>
+</body>
+<script>
+    const $cuadrado = document.querySelector('.cuadrado');
+    $cuadrado.addEventListener('animationend', (event) => {
+       console.log(event); 
+       if(event.animationName === 'rebote'){
+           $cuadrado.style.animationName = 'cuadrado escalera'
+           $cuadrado.style.animationDuration = '3s'
+       }
+    });
+</script>
+</html>
